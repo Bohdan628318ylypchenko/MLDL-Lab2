@@ -21,8 +21,10 @@ void pnn_new(double sigma,
 			 pnn * nn,
 			 double(*f)(double, double));
 
+double pnn_run(pnn * nn, v2 * x);
+
 void pnn_fread(pnn * nn, FILE * stream);
 
 void pnn_fwrite(pnn * nn, FILE * stream);
 
-void pnn_fprint(pnn * nn, FILE * stream);
+void pnn_fprint(pnn * nn, FILE * stream, int head_count);

@@ -15,7 +15,7 @@
 #define INCR_COEF 2
 #define MIN_LEFTOVER 1
 
-#define USAGE_MSG "Usage:\n [n]ew sigma a b segment_count;\n [s]ave path;\n [l]oad path;\n [p]rint;\n [e]xit;\n [u]sage;\n"
+#define USAGE_MSG "Usage:\n [n]ew sigma a b segment_count;\n [s]ave path;\n [l]oad path;\n [p]rint;\n s[i]gma sigma;\n [r]un x y;\n [e]xit;\n [u]sage;\n"
 #define COMMAND_PROMT "Command: "
 #define ERR_FOPEN "Can't open file %s.\n"
 
@@ -89,6 +89,20 @@ int main(void)
 				int head_count;
 				sscanf_s(args, "%d", &head_count);
 				pnn_fprint(&nn, stdout, head_count);
+				putchar('\n');
+				break;
+			case 'r':
+				args = input + 2;
+				v2 v;
+				sscanf_s(args, "%lf %lf", &(v.x), &(v.y));
+				if ((nn.refs == NULL) || (nn.f_vals == NULL))
+					break;
+				double result = pnn_run(&nn, &v);
+				printf("result = %lf\n\n", result);
+				break;
+			case 'i':
+				args = input + 2;
+				sscanf_s(args, "%lf", &(nn.sigma));
 				putchar('\n');
 				break;
 			case 'e':
